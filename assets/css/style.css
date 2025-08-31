@@ -1860,48 +1860,41 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .avatar-box {
   background: var(--bg-gradient-onyx);
-  /* Changed border-radius to make it oval */
-  border-radius: 50%; /* This will make it a perfect circle if width/height are equal, otherwise oval */
-  overflow: hidden; /* Ensure the image itself is clipped to the oval shape */
+  border-radius: 50%; /* Keep it circle/oval */
+  overflow: hidden; /* Clip image within circle */
+  width: 100px;  /* Default mobile size */
+  height: 100px;
+  margin: auto; /* Center align */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ... (existing CSS) ... */
+.avatar-box img {
+  width: 100%; 
+  height: 100%;
+  object-fit: cover; /* Prevent distortion */
+  border-radius: 50%; /* Ensures round crop */
+}
 
-/* Inside the @media (min-width: 580px) block */
+/* For tablets / small desktops */
 @media (min-width: 580px) {
-  /* ... (existing CSS) ... */
-
   .avatar-box {
-    /* Adjust for larger screens, keep it oval */
-    border-radius: 50%; /* Keep it oval for larger screens too */
+    width: 120px;
+    height: 120px;
   }
-
-  .avatar-box img { 
-    width: 120px; 
-    height: 120px; /* Added height to ensure consistent circle/oval shape */
-    object-fit: cover; /* Ensures the image fills the oval without distortion */
-  }
-
-  /* ... (existing CSS) ... */
 }
 
-/* Inside the @media (min-width: 1250px) block */
+/* For large screens */
 @media (min-width: 1250px) {
-  /* ... (existing CSS) ... */
-
-  .avatar-box img { 
-   width: 160px;
-height: 160px;
-object-fit: cover;
-border-radius: 50%;
-border: 3px solid var(--orange-yellow-crayola);
-box-shadow: var(--shadow-3);
-margin: auto;
-display: block; 
+  .avatar-box {
+    width: 160px;
+    height: 160px;
+    border: 3px solid var(--orange-yellow-crayola);
+    box-shadow: var(--shadow-3);
   }
-
-  /* ... (existing CSS) ... */
 }
+
 
 /* ----------------------------------
 About, Languages & Resume Personal Details
@@ -1919,4 +1912,5 @@ color: #fff !important;
 .personal-details-list strong,
 .personal-details-list a {
 color: #fff !important;
+
 }
